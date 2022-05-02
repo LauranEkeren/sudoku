@@ -13,6 +13,10 @@ namespace Normal
 
         }
 
+        public bool isValid(){
+            return spaces.GroupBy(x => x.getNumber()).All(g => g.Count() == 1 || g.Key == 0);
+        }
+
 
     }
 }

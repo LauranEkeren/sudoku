@@ -6,13 +6,13 @@ namespace Normal
         public int position {get; set;}
         public bool isFilled {get; set;}
 
-        public List<int> possibleNumbers;
+        // public List<int> possibleNumbers;
 
         public Space(int position){
             this.number = 0;
             this.position = position;
             this.isFilled = false;
-            this.possibleNumbers = new List<int>(){1, 2, 3, 4, 5, 6, 7, 8, 9};
+            // this.possibleNumbers = new List<int>(){1, 2, 3, 4, 5, 6, 7, 8, 9};
         }
 
         public void setNumber(int number){

@@ -7,6 +7,9 @@ namespace Normal
         public Column[] columns {get; set;}
         public Space[] spaces {get; set;}
 
+
+
+
         public NormalSudoku()
         {
             this.squares = new Square[9];
@@ -117,19 +120,52 @@ namespace Normal
         }
 
 
-        public void addValue(int position, int value){
+        public void setSpace(int position, int value){
             Space space = this.spaces[position];
             space.setNumber(value);
+        }
+
+        public Space getSpace(int position){
+            return this.spaces[position];
+        }
+
+        public bool isSudokuValid(){
+            // Check all squares.
+            foreach(Square square in squares){
+                if (!square.isValid()){
+                    return false;
+                }
+            }
+            // Check all columns.
+            foreach(Column column in columns){
+                if (!column.isValid()){
+                    return false;
+                }
+            }
+            // Check all rows.
+            foreach(Row row in rows){
+                if (!row.isValid()){
+                    return false;
+                }
+            }
+            // if all are valid, we return true.
+            return true;
         }
 
         public void printSudokuValues()
         {
             foreach (Row row in this.rows)
             {
+                if (row.position % 3 == 0){
+                    Console.WriteLine("   --------------------------------------------");
+                }
                 Console.Write(row.position + ": ");
-                foreach (Space space in row.spaces)
+                for (int i = 0; i <= 8; i++)
                 {
-                    Console.Write("[" + space.getNumber() + "] ");
+                    if(i % 3 == 0){
+                        Console.Write("| ");
+                    }
+                    Console.Write("[" + row.spaces[i].getNumber() + "] ");
                 }
                 Console.Write("\n");
             }
