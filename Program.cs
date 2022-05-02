@@ -1,4 +1,6 @@
-﻿namespace Sudoku
+﻿using Normal;
+
+namespace Sudoku
 {
     class Program
     {
@@ -7,9 +9,10 @@
 
             Console.WriteLine("Hello World!");
 
-            Sudoku sudoku = new Sudoku();
+            NormalSudoku sudoku = new NormalSudoku();
+            sudoku.addValue(40, 9);
 
-            sudoku.printSudokuPositionSquare();
+            sudoku.printSudokuValues();
             
 
 

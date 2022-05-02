@@ -1,8 +1,8 @@
 using System.Collections;
 
-namespace Sudoku
+namespace Normal
 {
-    class Row
+    public class Row
     {
         public List<Space> spaces {get; set;}
         public int position {get; set;}

@@ -1,6 +1,6 @@
-namespace Sudoku
+namespace Normal
 {
-    class Square
+    public class Square
     {
         public List<Space> spaces;
         public int position;

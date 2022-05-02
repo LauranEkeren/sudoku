@@ -1,6 +1,6 @@
-namespace Sudoku
+namespace Normal
 {
-    class Column
+    public class Column
     {
 
         public List<Space> spaces;

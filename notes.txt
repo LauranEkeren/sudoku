@@ -1,0 +1,5 @@
+Brute forcen is te veel werk, dat raakt nooit klaar.
+Dus eerst simpel met backtracking proberen.
+dan killer sudoku met backtracking.
+dan killer sudoku met vooruitkijken,
+en slimmer maken dan.

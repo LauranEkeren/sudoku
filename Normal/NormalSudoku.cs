@@ -1,16 +1,18 @@
-namespace Sudoku
+namespace Normal
 {
-    class Sudoku
+    public class NormalSudoku
     {
-        public Square[] squares;
-        public Row[] rows;
-        public Column[] columns;
+        public Square[] squares {get; set;}
+        public Row[] rows {get; set;}
+        public Column[] columns {get; set;}
+        public Space[] spaces {get; set;}
 
-        public Sudoku()
+        public NormalSudoku()
         {
             this.squares = new Square[9];
             this.rows = new Row[9];
             this.columns = new Column[9];
+            this.spaces = new Space[81];
 
             // Fill squares[] with Square.
             // Fill rows[] with Row.
@@ -22,7 +24,7 @@ namespace Sudoku
                 this.columns[i] = new Column(i);
             }
 
-            // Create spaces and fill squares, rows, and columns with them.
+            // Create spaces and fill spaces, squares, rows, and columns with them.
             // Use count for position.
             int count = 0;
             // There are 0 to 80 positions in a sudoku.
@@ -30,6 +32,9 @@ namespace Sudoku
             {
                 // Create space.
                 Space space = new Space(count);
+
+                // Add space to spaces.
+                spaces[count] = space;
 
                 // Add space to relevant row.
                 int rowNumber = count / 9;
@@ -111,6 +116,27 @@ namespace Sudoku
 
         }
 
+
+        public void addValue(int position, int value){
+            Space space = this.spaces[position];
+            space.setNumber(value);
+        }
+
+        public void printSudokuValues()
+        {
+            foreach (Row row in this.rows)
+            {
+                Console.Write(row.position + ": ");
+                foreach (Space space in row.spaces)
+                {
+                    Console.Write("[" + space.getNumber() + "] ");
+                }
+                Console.Write("\n");
+            }
+        }
+
+// For manually testing.
+
         public void printSudokuPositionRow(){
             foreach (Row row in this.rows)
             {
@@ -121,7 +147,6 @@ namespace Sudoku
                 Console.Write("\n");
             }
         }
-
         public void printSudokuPositionColumn(){
             foreach (Column column in this.columns){
                 Console.Write(column.position + ": ");
