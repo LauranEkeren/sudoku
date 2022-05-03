@@ -1,10 +1,6 @@
 namespace Normal {
     class SudokuMaker {
-
-
-        public SudokuMaker(){
-
-        }
+        public SudokuMaker(){}
 
         public NormalSudoku sudokuOne(){
             NormalSudoku sudoku = new NormalSudoku();

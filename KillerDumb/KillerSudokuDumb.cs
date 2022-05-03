@@ -1,18 +1,24 @@
-namespace Normal
-{
-    public class NormalSudoku
-    {
+using Normal;
+
+namespace KillerDumb{
+
+    public class KillerSudokuDumb{
+
         public Square[] squares {get; set;}
         public Row[] rows {get; set;}
         public Column[] columns {get; set;}
         public Space[] spaces {get; set;}
+        public List<Area> areas {get; set;}
 
-        public NormalSudoku()
+// This gives us a normal Sudoku, One must add the Area's later.
+        public KillerSudokuDumb()
         {
             this.squares = new Square[9];
             this.rows = new Row[9];
             this.columns = new Column[9];
             this.spaces = new Space[81];
+            // areas is made here, one must fill it manually later.
+            this.areas = new List<Area>();
 
             // Fill squares[] with Square.
             // Fill rows[] with Row.
@@ -109,13 +115,16 @@ namespace Normal
                         }
                         break;
                 }
-
                 count++;
-
             }
 
         }
 
+        public void addArea(int target, List<int> positions){
+            Area area = new Area(target, positions, this);
+            this.areas.Add(area);
+        }
+         
         public void setSpace(int position, int value){
             Space space = this.spaces[position];
             space.setNumber(value);
@@ -144,9 +153,17 @@ namespace Normal
                     return false;
                 }
             }
+            // Check all Area's.
+            foreach(Area area in areas){
+                if (!area.Isvalid()){
+                    return false;
+                }
+            }
             // if all are valid, we return true.
             return true;
         }
+
+
 
         public void printSudokuValues()
         {
@@ -168,6 +185,15 @@ namespace Normal
         }
 
 // For manually testing.
+        public void printAreas(){
+            for (int i = 0; i < this.areas.Count(); i++){
+                Console.Write(areas[i].target + ": ");
+                foreach (Space space in this.areas[i].spaces){
+                    Console.Write("[" + space.getNumber() + "] ");
+                }
+                Console.Write("\n");
+            }
+        }
 
         public void printSudokuPositionRow(){
             foreach (Row row in this.rows)
@@ -201,4 +227,3 @@ namespace Normal
 
     }
 }
-
