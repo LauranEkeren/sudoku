@@ -3,10 +3,10 @@ namespace Normal
     public class Space
     {
         private int number {get; set;}
-        public int position {get; set;}
-        public bool isFilled {get; set;}
+        public int position {get;}
+        private bool isFilled {get; set;}
 
-        // public List<int> possibleNumbers;
+
 
         public Space(int position){
             this.number = 0;
@@ -16,8 +16,12 @@ namespace Normal
         }
 
         public void setNumber(int number){
+            if (number == 0){
+                this.isFilled = false;
+            } else {
+                this.isFilled = true;
+            }
             this.number = number;
-            this.isFilled = true;
         }
 
         public int getNumber(){

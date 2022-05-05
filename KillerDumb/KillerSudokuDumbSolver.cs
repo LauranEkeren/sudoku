@@ -12,7 +12,6 @@ namespace KillerDumb{
         }
 
          private KillerSudokuDumb solveSudoku(KillerSudokuDumb sudoku, int position){
-            Console.Write(position + "] [");
             // Ga alle posities af, zoekend welke nog niet gevuld is.
             while (position <= 80){
                 // Kijk of de positie gevuld is.
