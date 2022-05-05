@@ -9,7 +9,7 @@ namespace KillerDumb{
         public Area(int target, List<int> positions, KillerSudokuDumb killerSudokuDumb){
             this.spaces = new List<Space>();
             this.target = target;
-            //Fill spaces with relevent spaces, using positions and given killerSudoku.
+  
             foreach (int position in positions){
                 this.spaces.Add(killerSudokuDumb.getSpace(position));
             }

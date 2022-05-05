@@ -23,12 +23,6 @@ namespace Sudoku
             
             sudoku.printSudokuValues();
 
-            foreach (ForwardSpace space in sudoku.rows[0].getSpaces()){
-                foreach(int number in space.getPossibleNumbers()){
-                    Console.Write(number);
-                }
-                Console.Write("\n");
-            }
             
             
             // SUDOKU KILLER DUMB TRYOUT.

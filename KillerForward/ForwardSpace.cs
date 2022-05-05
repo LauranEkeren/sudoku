@@ -113,39 +113,36 @@ namespace KillerForward {
         }
 
         public void addPossibleNumber(int value){
-            bool shouldAdd = true;
             // Check whether the number is already possible.
             if (possibleNumbers.Contains(value)){
-                shouldAdd = false;
+                return;
             } 
             // Check whether the number is possible in the row.
             foreach (ForwardSpace space in row.getSpaces()){
                 if (space.number == value){
-                shouldAdd = false;
+                return;
                 }
             }
             // Check whether the number is possible in the area.
             foreach (ForwardSpace space in area.getSpaces()){
                 if (space.number == value){
-                shouldAdd = false;
+                return;
                 }
             }
             // Check whether the number is possible in the square.
             foreach (ForwardSpace space in square.getSpaces()){
                 if (space.number == value){
-                shouldAdd = false;
+                return;
                 }
             }
             // Check whether the number is possible in the column
             foreach (ForwardSpace space in column.getSpaces()){
                 if (space.number == value){
-                    shouldAdd = false;
+                return;
                 }
             }
             // If all are possible, add the number. Else do nothing.
-            if (shouldAdd){
-                this.possibleNumbers.Add(value);
-            } 
+            this.possibleNumbers.Add(value);
         }
 
         public void removePossibleNumber(int number){

@@ -14,8 +14,6 @@ namespace KillerForward {
          private ForwardKillerSudoku solveSudoku(ForwardKillerSudoku sudoku, int position){
             // Ga alle posities af. Zoekend welke nog niet gevuld is.
             while (position <= 80){
-
-
                 // Pak de space van de huidige positie.
                 ForwardSpace space = sudoku.getSpace(position);
                 // Als de positie gevuld is, gaan we naar de volgende positie toe, anders doen we iets.
@@ -28,14 +26,10 @@ namespace KillerForward {
                             // Check whether the counter is in our possible numbers.
                             if (space.getPossibleNumbers().Contains(counter)){
                                 // Check whether space can be filled.
-                                if (space.canSetNumber(counter)){
-                                    // set number
-                                    space.setNumber(counter);
-                                    // Check if sudoku is valid TODO: ONLY CHECK FOR AREA'S LATER.
-                                    if (sudoku.isSudokuValid()){
-                                        ForwardKillerSudoku copy = sudoku; // TOREMOVE:
-                                        ForwardKillerSudoku newSudoku = solveSudoku(copy, position + 1);
-
+                                if (space.setNumber(counter)){
+                                    // Check if area is valid .
+                                    if (space.area.Isvalid()){
+                                        ForwardKillerSudoku newSudoku = solveSudoku(sudoku, position + 1);
                                         // Als we een null terugkrijgen, moeten we nog wel al onze getallen in de huidige counter proberen, dus doen we niks.
                                         // Als we een sudoku terugkrijgen, is deze opgelost, dus geven we die omhoog door.
                                         if(newSudoku != null){
@@ -49,13 +43,8 @@ namespace KillerForward {
                             counter ++;
                         }
                         // If no numbers are possible, this tree is wrong. Set the position back to zero and return null.
-                        space.setNumber(0);
                         return null;
-                    } else {
-                        //TOREMOVE
-                        // No possible numbers return null.
-                        return null;
-                    }
+                    } 
                 }
                 // Increase position by one.
                 position ++;

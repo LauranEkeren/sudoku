@@ -119,44 +119,10 @@ namespace KillerForward{
             this.areas.Add(area);
         }
 
-        public void setSpace(int position, int value){
-            ForwardSpace space = this.spaces[position];
-            space.setNumber(value);
-        }
-
         public ForwardSpace getSpace(int position){
             return this.spaces[position];
         }
 
-        public bool isSudokuValid(){
-            // Check all squares.
-            foreach(ForwardSquare square in squares){
-                if (!square.isValid()){
-                    return false;
-                }
-            }
-            // Check all columns.
-            foreach(ForwardColumn column in columns){
-                if (!column.isValid()){
-                    return false;
-                }
-            }
-            // Check all rows.
-            foreach(ForwardRow row in rows){
-                if (!row.isValid()){
-                    return false;
-                }
-            }
-            // Check all Area's.
-            foreach(ForwardArea area in areas){
-                if (!area.Isvalid()){
-                    return false;
-                }
-            }
-            // if all are valid, we return true.
-            return true;
-        }
-        
         public void printSudokuValues()
         {
             foreach (ForwardRow row in this.rows)

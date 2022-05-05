@@ -18,6 +18,25 @@ namespace KillerForward {
             }
         }
 
+        public void removePossibleNumber(int number){
+            foreach (ForwardSpace space in spaces){
+                space.removePossibleNumber(number);
+            }
+        }
+
+        public void removePossibleNumberUpperStart(){
+            //TODO
+        }
+
+        public void removePossibleNumberLowerStart(){
+                        //TODO
+
+        }
+
+        public void removePossibleNumberDoubleStart(){
+            //TODO
+        }
+
         public void addSpace(ForwardSpace space){
             this.spaces.Add(space);
             space.area = this;
