@@ -7,6 +7,12 @@ namespace KillerForward {
 
         public ForwardKillerSudoku startSolving(ForwardKillerSudoku sudoku){
             Console.WriteLine("Start solving");
+            foreach (ForwardArea area in sudoku.areas){
+                area.setAreaIfSizeIsOne();
+                area.removePossibleNumberUpperStart();
+                area.removePossibleNumberDoubleStart();
+                area.removePossibleNumberLowerStart();
+            }
 
             return solveSudoku(sudoku, 0);
         }
@@ -23,26 +29,21 @@ namespace KillerForward {
                         // Use a counter to go through or possible numbers. 
                         int counter = 1;
                         while (counter <= 9){
-                            // Check whether the counter is in our possible numbers.
-                            if (space.getPossibleNumbers().Contains(counter)){
-                                // Check whether space can be filled.
+                                // setspace, gives true or false and sets the space if its true..
                                 if (space.setNumber(counter)){
-                                    // Check if area is valid .
-                                    if (space.area.Isvalid()){
-                                        ForwardKillerSudoku newSudoku = solveSudoku(sudoku, position + 1);
-                                        // Als we een null terugkrijgen, moeten we nog wel al onze getallen in de huidige counter proberen, dus doen we niks.
-                                        // Als we een sudoku terugkrijgen, is deze opgelost, dus geven we die omhoog door.
-                                        if(newSudoku != null){
-                                            return newSudoku;
-                                        }
+                                    ForwardKillerSudoku newSudoku = solveSudoku(sudoku, position + 1);
+                                    // Als we een null terugkrijgen, moeten we nog wel al onze getallen in de huidige counter proberen, dus doen we niks.
+                                    // Als we een sudoku terugkrijgen, is deze opgelost, dus geven we die omhoog door.
+                                    if(newSudoku != null){
+                                        return newSudoku;
                                     }
+                                    
                                 }
-                            }
                             // Increase while loop to escape someday.
-                            space.setNumber(0);
                             counter ++;
                         }
                         // If no numbers are possible, this tree is wrong. Set the position back to zero and return null.
+                        space.setNumber(0);
                         return null;
                     } 
                 }
@@ -52,6 +53,5 @@ namespace KillerForward {
             // Als we alle posities zijn afgegaan zouden we een gevulde sudoku moeten hebben.
             return sudoku;
         }
-
     }
 }

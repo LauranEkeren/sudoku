@@ -11,37 +11,30 @@ namespace Sudoku
             Console.WriteLine("Hello World!");
             DateTime startTime = DateTime.Now;
 
+
+            // FORWARD STACK SOLVER
             ForwardSudokuMaker sudokuMaker = new ForwardSudokuMaker();
-            ForwardKillerSudoku sudoku = sudokuMaker.sudokuOne();
-            ForwardSudokuSolver sudokuSolver = new ForwardSudokuSolver();
+            ForwardKillerSudoku sudoku = sudokuMaker.sudokuThree();
 
-
-
-            
-
-            sudokuSolver.startSolving(sudoku);
-            
+            ForwardStackSolver solver = new ForwardStackSolver(sudoku);
+            solver.startSolving();
             sudoku.printSudokuValues();
 
+            // FORWARD SUDOKU
+            // ForwardSudokuMaker sudokuMaker = new ForwardSudokuMaker();
+            // ForwardKillerSudoku sudoku = sudokuMaker.sudokuThree();
+
+            // ForwardSudokuSolver sudokuSolver = new ForwardSudokuSolver();
+            // sudokuSolver.startSolving(sudoku);
+            // sudoku.printSudokuValues();
             
             
             // SUDOKU KILLER DUMB TRYOUT.
             // KillerSudokuDumbMaker killerSudokuDumbMaker = new KillerSudokuDumbMaker();
-            // KillerSudokuDumb killerSudokuDumb = killerSudokuDumbMaker.sudokuOne();
+            // KillerSudokuDumb killerSudokuDumb = killerSudokuDumbMaker.sudokuThree();
+
             // KillerSudokuDumbSolver killerSudokuDumbSolver = new KillerSudokuDumbSolver();
             // KillerSudokuDumb sudokuSolved = killerSudokuDumbSolver.startSolving(killerSudokuDumb);
-            // Console.WriteLine(sudokuSolved == null);
-            // killerSudokuDumb.printSudokuValues();
-            // sudokuSolved.printSudokuValues();
-            
-            // SUDOKU NORMAL DUMB TRYOUT.
-            // SudokuMaker sudokuMaker = new SudokuMaker();
-            // NormalSudoku sudoku = sudokuMaker.sudokuTwo();
-            // sudoku.printSudokuValues();
-            // SudokuSolver sudokuSolver = new SudokuSolver();
-            // NormalSudoku solvedSudoku = sudokuSolver.startSolving(sudoku);
-            // Console.WriteLine(solvedSudoku == null);
-            // sudoku.printSudokuValues();
 
             DateTime endTime = DateTime.Now;
             Console.WriteLine("Start tijd:" + startTime);

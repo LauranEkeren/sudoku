@@ -25,11 +25,16 @@ namespace KillerForward {
             if (this.number == number){
                 return true;
             }
+            // if number is greater than 9, return false.
+            if (number > 9){
+                return false;
+            }
             // If number gets set to 0 from another number, 
             // Number must be set to 0;
             // spaces must be added to everything else and this space.
             if (number == 0){
                 this.number = 0;
+                this.filled = false;
                 this.setPossibleNumberAll(numberToChange);
                 return true;
             }
@@ -43,6 +48,7 @@ namespace KillerForward {
                 } else {
                     // Set number, remove everything else.
                     this.number = number;
+                    this.filled = true;
                     this.removePossibleNumberOthers(number);
                     return true;
                 }
@@ -50,12 +56,14 @@ namespace KillerForward {
             // If number gets set from a number to another number.
             // Set this space to 0 first, so possible numbers get updated.
             this.setNumber(0);
+            this.filled = false;
             // If we can't set the number, we stop.
             if (!canSetNumber(number)){
                 return false;
             } else {
                 // Set number, remove everything else.
                 this.number = number;
+                this.filled = true;
                 this.removePossibleNumberOthers(number);
                 return true;
             }
@@ -73,7 +81,7 @@ namespace KillerForward {
             this.row.removePossibleNumberFromSpaces(this, number);
             this.column.removePossibleNumberFromSpaces(this, number);
             this.square.removePossibleNumberFromSpaces(this, number);
-            this.area.removePossibleNumberFromSpaces(this, number);
+            this.area.removePossibleNumberFromSpacesExceptGiven(this, number);
         }
 
         public bool canSetNumber(int number){
